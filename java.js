@@ -1,0 +1,26 @@
+async function convert() {
+    let amount = document.getElementById("amount").value;
+  let from = document.getElementById("from").value;
+  let to = document.getElementById("to").value;
+
+  let url = `https://api.exchangerate-api.com/v4/latest/${from}`;
+
+  let res = await fetch(url);
+  let data = await res.json();
+
+  let rate = data.rates[to];
+
+  let result = amount * rate;
+
+  document.getElementById("result").innerText =
+    amount + " " + from + " = " + result + " " + to;
+
+}
+
+function Reset(){
+    document.getElementById("amount").value = "";
+    document.getElementById("from").value = "";
+    document.getElementById("to").value = "";
+    document.getElementById("result").innerText = ""
+
+}
